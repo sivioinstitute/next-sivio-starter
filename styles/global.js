@@ -11,6 +11,10 @@ export const GlobalStyles = createGlobalStyle`
     --sivio-light-button: rgba(55, 76, 91, 0.5);
     --sivio-light-grey: #EAEAEA;
     --sivio-white: #ffffff;
+
+    /* Fonts */
+    --font-size: 16px;
+    --font-family: 'TT Commons', Helvetica, Arial, sans-serif;
   }
 
   @font-face {
@@ -31,17 +35,19 @@ export const GlobalStyles = createGlobalStyle`
       src: url("./fonts/TT.Commons/TTCommons-Bold.ttf");
   }
 
-  * {
-    box-sizing: border-box;
+  *, html, body {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
   }
-  html, body {
-  font-family: 'TT Commons', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  
+  body {
+  font-size: var(--font-size);
+  font-family: var(--font-family);
+  font-weight: 500;
   color: var(--sivio-blue-grey);
-  font-size: 16px;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
   overflow-x: hidden;
-}`;
+}
+`;
