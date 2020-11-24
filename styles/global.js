@@ -36,6 +36,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   *, html, body {
+      font-family: var(--font-family);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       margin: 0;
@@ -45,7 +46,6 @@ export const GlobalStyles = createGlobalStyle`
   
   body {
   font-size: var(--font-size);
-  font-family: var(--font-family);
   font-weight: 500;
   color: var(--sivio-blue-grey);
   overflow-x: hidden;

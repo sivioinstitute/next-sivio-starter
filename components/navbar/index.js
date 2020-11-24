@@ -1,4 +1,4 @@
-import React from 'react';
+import { Layout } from '@components';
 import {
   Wrapper,
   Container,
@@ -17,7 +17,9 @@ import {
 export const NavBar = ({ children, ...rest }) => {
   return (
     <Wrapper>
-      <Container {...rest}>{children}</Container>
+      <Layout>
+        <Container {...rest}>{children}</Container>
+      </Layout>
     </Wrapper>
   );
 };

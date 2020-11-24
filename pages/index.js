@@ -1,13 +1,14 @@
 import Head from 'next/head';
 import styled from 'styled-components';
-import { NavBarContainer } from '../containers/navbar';
+import { Typography, Button } from '@components';
+import { NavBarContainer, FooterContainer } from '@containers';
 
-import * as media from '../styles/media';
+import * as BREAK_POINTS from '../styles/media';
 
 const Heading = styled.h1`
   color: var(--sivio-blue-grey);
 
-  ${media.Mobile`
+  ${BREAK_POINTS.Mobile`
     color: var(--sivio-green);
   `}
 `;
@@ -16,7 +17,10 @@ export default function Home() {
   return (
     <div>
       <NavBarContainer />
+      <Typography.H2>Test</Typography.H2>
+      <Button>Button</Button>
       <Heading>Welcome to the Sivio Starter kit</Heading>
+      <FooterContainer />
     </div>
   );
 }

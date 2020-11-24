@@ -6,9 +6,6 @@ export const Wrapper = styled.div`
 `;
 
 export const Container = styled.div`
-  max-width: 1300px;
-  width: 90%;
-  margin: auto;
   display: grid;
   grid-template-columns: 1fr 5fr 1fr;
   padding: 0.7rem 0;
