@@ -1,8 +1,14 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  border-bottom: 1px solid var(--sivio-light-border);
+  border-bottom: 1px solid
+    ${({ dark }) =>
+      dark ? 'rgba(255,255,255,0.12)' : 'var(--sivio-light-border)'};
   padding-top: 0.5rem;
+  display: none;
+  @media (min-width: 500px) {
+    display: block;
+  }
 `;
 
 export const Container = styled.div`
@@ -12,25 +18,34 @@ export const Container = styled.div`
 `;
 
 export const LogoContainer = styled.div`
-  border-right: 1px solid var(--sivio-light-border);
+  border-right: 1px solid
+    ${({ dark }) =>
+      dark ? 'rgba(255,255,255,0.12)' : 'var(--sivio-light-border)'};
   height: 100px;
   display: flex;
   flex-direction: column;
 `;
 
 export const Logo = styled.img`
-  width: 90%;
+  width: 85%;
 `;
 
 export const LogoText = styled.span`
-  color: var(--sivio-light-text);
-  display: block;
-  width: 90%;
-  padding-top: 0.5rem;
-  text-transform: uppercase;
-  text-align: center;
-  font-weight: 600;
-  font-size: 16px;
+  position: relative;
+  top: 3px;
+  a {
+    color: ${({ dark }) =>
+      dark ? 'rgba(255,255,255,0.5)' : 'var(--sivio-blue-grey)'};
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: ${({ dark }) => (dark ? '600' : '600')};
+    font-size: 16px;
+    text-decoration: none;
+
+    &:first-of-type {
+      color: var(--sivio-green);
+    }
+  }
 `;
 
 export const ItemsContainer = styled.div`
@@ -40,7 +55,9 @@ export const ItemsContainer = styled.div`
   margin: auto;
 
   > ul:first-of-type {
-    border-bottom: 1px solid var(--sivio-light-border);
+    border-bottom: 1px solid
+      ${({ dark }) =>
+        dark ? 'rgba(255,255,255,0.12)' : 'var(--sivio-light-border)'};
   }
 `;
 
@@ -62,27 +79,37 @@ export const Item = styled.li`
   position: relative;
   letter-spacing: 0.01rem;
   font-weight: 600;
+  font-size: 16px;
   cursor: pointer;
-  color: ${({ active }) =>
-    active ? 'var(--sivio-orange)' : 'var(--sivio-blue-grey)'};
+  color: ${({ active, dark }) =>
+    active
+      ? 'var(--sivio-green)'
+      : `${dark ? 'var(--sivio-white)' : 'var(--sivio-blue-grey)'}`};
 
   &:after {
     position: absolute;
-    display: ${({ active }) => (active ? 'block' : 'none')};
+    display: ${({ active, noLine }) => (active && !noLine ? 'block' : 'none')};
     content: '';
     top: -2.35rem;
+    z-index: 100;
     left: -3px;
     width: calc(100% + 6px);
     height: 5px;
-    background: var(--sivio-orange);
+    background: var(--sivio-green);
   }
 
   &:hover {
-    color: var(--sivio-orange);
+    color: var(--sivio-green);
   }
 
   &:hover :after {
     display: block;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+    min-width: max-content;
   }
 `;
 
@@ -94,7 +121,6 @@ export const Contact = styled(Item)`
 
 export const Menu = styled(Item)`
   margin-right: 0;
-  color: var(--sivio-orange);
   position: absolute;
   right: 0;
   display: flex;
@@ -105,10 +131,15 @@ export const Menu = styled(Item)`
     top: -2px;
     margin-right: 0.5rem;
   }
+  span {
+    color: var(--sivio-blue-grey);
+  }
 `;
 
 export const SearchButtonContainer = styled.div`
-  border-left: 1px solid var(--sivio-light-border);
+  border-left: 1px solid
+    ${({ dark }) =>
+      dark ? 'rgba(255,255,255,0.12)' : 'var(--sivio-light-border)'};
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -117,9 +148,10 @@ export const SearchButtonContainer = styled.div`
 export const SearchButton = styled.button`
   width: 90%;
   max-width: 150px;
-  background: #eaeaea;
+  background: ${({ dark }) => (dark ? '#597080' : '#eaeaea')};
   border: 0;
-  color: var(--sivio-light-button);
+  color: ${({ dark }) =>
+    dark ? 'rgba(255,255,255,0.5)' : 'var(--sivio-light-button)'};
   line-height: 38px;
   font-size: 15px;
   font-weight: 500;
@@ -133,5 +165,59 @@ export const SearchButton = styled.button`
     left: 0.5rem;
     top: 50%;
     transform: translateY(-50%);
+    filter: ${({ dark }) => (dark ? 'invert(1)' : 'initial')};
+  }
+`;
+
+// Mobile navigation
+
+export const MobileContainer = styled(Wrapper)`
+  padding: 0 0.5rem;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @media (min-width: 500px) {
+    display: none;
+  }
+`;
+
+export const MobileMenu = styled.ul`
+  @keyframes slide {
+    0% {
+      opacity: 0;
+      left: 101vw;
+    }
+    100% {
+      opacity: 1;
+      left: 0;
+    }
+  }
+  animation: slide 300ms linear;
+  height: calc(100vh - 70px);
+  width: 100vw;
+  list-style: none;
+  background-color: #ffffff;
+  z-index: 10;
+  position: absolute;
+
+  @media (min-width: 500px) {
+    display: none;
+  }
+`;
+
+export const MobileItem = styled.li`
+  padding: 1.4rem 0.5rem;
+  border-bottom: 1px solid var(--sivio-light-border);
+  ${({ active }) =>
+    active ? 'border-left: 7px solid var(--sivio-green);' : ''}
+  font-weight: 600;
+  text-transform: uppercase;
+
+  a {
+    text-decoration: none;
+    color: ${({ active }) => (active ? 'var(--sivio-green)' : 'inherit')};
+    display: block;
   }
 `;

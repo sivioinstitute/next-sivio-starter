@@ -1,5 +1,10 @@
-export { NavBar } from './navbar';
+export { NavBar, MobileNav } from './navbar';
 export { Footer } from './footer';
 export { Layout } from './layout';
 export { Button } from './button';
 export { Typography } from './typography';
+export { Table } from './table';
+export { Tabs } from './tabs';
+export { Grid } from './grid';
+export { Divider } from './divider';
+export { BreadCrump } from './breadcrump';

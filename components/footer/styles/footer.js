@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const Background = styled.div`
   background: ${({ lightBg }) =>
     lightBg
-      ? `url(./images/svg/footer-orange.svg) no-repeat top center;`
-      : `url(./images/svg/footer-dark.svg) no-repeat top center;`};
+      ? `url(/images/svg/footer-orange.svg) no-repeat top center;`
+      : `url(/images/svg/footer-dark.svg) no-repeat top center;`};
   background-size: cover;
 `;
 
@@ -15,16 +15,28 @@ export const Container = styled.div`
   grid-template-columns: repeat(3, 1fr);
   padding: 0.7rem 0;
   color: var(--sivio-white);
+
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr;
+    padding: 13rem 0 5rem 0;
+  }
 `;
 
 export const Col = styled.div`
   padding: 13rem 0 4rem 0;
+
+  @media (max-width: 500px) {
+    padding: 0rem;
+  }
 `;
 
 export const CtaText = styled.p`
   font-size: 20px;
   font-weight: 400;
   max-width: 272px;
+  @media (max-width: 500px) {
+    max-width: 100%;
+  }
 `;
 
 export const Header = styled.div`
@@ -37,6 +49,9 @@ export const Heading = styled.h5`
   line-height: 100%;
   max-width: 272px;
   margin-top: 0.5rem;
+  @media (max-width: 500px) {
+    max-width: 100%;
+  }
 `;
 
 export const Icon = styled.img`
@@ -68,6 +83,9 @@ export const Input = styled.input`
   line-height: 21px;
   font-style: italic;
   min-width: 254px;
+  @media (max-width: 500px) {
+    min-width: calc(100% - 70px);
+  }
   margin-right: 0.5rem;
   border-bottom: 1px solid var(--sivio-white);
 

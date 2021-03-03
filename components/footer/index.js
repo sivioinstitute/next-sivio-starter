@@ -1,6 +1,5 @@
 import { createContext, useContext } from 'react';
 import { Layout } from '@components';
-import Image from 'next/image';
 
 import {
   Background,
@@ -51,7 +50,7 @@ Footer.Icon = ({ ...rest }) => {
   return (
     <Icon
       src={
-        lightBg ? './images/svg/mail-dark.svg' : './images/svg/mail-orange.svg'
+        lightBg ? '/images/svg/mail-dark.svg' : '/images/svg/mail-orange.svg'
       }
       {...rest}
     />
@@ -70,7 +69,16 @@ Footer.SendButton = ({ ...rest }) => {
   const { lightBg } = useContext(FooterContext);
   return (
     <SendButton {...rest} lightBg={lightBg}>
-      <Image src="/images/svg/arrow.svg" alt="" width={25} height={30} />
+      <span style={{ display: 'block', width: 0, zIndex: -2, opacity: 0 }}>
+        Subscribe
+      </span>
+      <img
+        loading="lazy"
+        src="/images/svg/arrow.svg"
+        alt="Subscribe"
+        width={25}
+        height={30}
+      />
     </SendButton>
   );
 };
